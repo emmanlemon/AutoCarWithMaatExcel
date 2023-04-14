@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('car_type');
             $table->string('car_model');
             $table->string('car_prize');
-            $table->string('year_release');            $table->string('year_release')->unique();
+            $table->string('year_release'); 
             $table->string('monthly');
             $table->string('year_coverage');
             $table->timestamps();
