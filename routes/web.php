@@ -20,6 +20,6 @@ use App\Http\Controllers\CarController;
 
 Route::redirect('/' , '/autocars');
 Route::resource('/autocars' , Carcontroller::class);
-Route::get('users/export/', [UsersController::class, 'export'])->name('excel.export');
-Route::post('users/import/', [UsersController::class, 'import'])->name('excel.import');
+Route::get('/autocar/export', [Carcontroller::class, 'export'])->name('excel.export');
+Route::post('/autocar/import', [Carcontroller::class, 'import'])->name('excel.import');
 

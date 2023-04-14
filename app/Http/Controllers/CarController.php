@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AutoCars;
 use App\Exports\CarsExport;
+use App\Imports\CarsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CarController extends Controller
@@ -67,5 +68,20 @@ class CarController extends Controller
     {
         $autocar->delete();
         return redirect()->back()->with('message', 'Car Deleted Successfully');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new CarsExport, 'autocars.xlsx');        ;
+    }
+
+    public function import(Request $request) 
+    {
+        $file = request()->file('file');
+        Excel::import(new CarsImport, $file);
+
+        // Excel::import(new UsersImport, 'users.xlsx');
+        
+        return redirect('/')->with('success', 'All good!');
     }
 }
