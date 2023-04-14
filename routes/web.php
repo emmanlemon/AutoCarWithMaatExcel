@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +14,12 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::redirect('/' , '/autocars');
+Route::resource('/autocars' , Carcontroller::class);
 Route::get('users/export/', [UsersController::class, 'export'])->name('excel.export');
 Route::post('users/import/', [UsersController::class, 'import'])->name('excel.import');
+
